@@ -1,21 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-public delegate double MyFunctionDelegate(double x);
-public class Area
-{
-    public static double TrapRule(MyFunctionDelegate function, double cleanlimleft, double cleanlimright, int cleanstep)
-    {
-        // a, b - пределы интегрирования
-        // n - количество разбиений
-        double h = (cleanlimright - cleanlimleft) / cleanstep;
-        double sum = 0.5 * (function(cleanlimleft) + function(cleanlimright));
-        for (int i = 1; i < cleanstep                                      ; i++)
-        {
-            double x = cleanlimleft + i * h;
-            sum += function(x);
-        }
-        return h * sum;
-    }
-}
+﻿using Calculate;
 
 public class Program
 {
@@ -74,7 +57,7 @@ public class Program
 
             try
             {
-                result = Area.TrapRule(myFunction, cleanlimleft, cleanlimright, cleanstep);
+                result = AreaCalculate.TrapRule(myFunction, cleanlimleft, cleanlimright, cleanstep);
                 if (double.IsNaN(result))
                 {
                     Console.WriteLine("This operation will result in a mathematical error.\n");
@@ -92,14 +75,9 @@ public class Program
             Console.Write("Press 'n' and Enter to close the app, or press any other key and Enter to continue: ");
             if (Console.ReadLine() == "n") endApp = true;
 
-            Console.WriteLine("\n"); // Friendly linespacing.
+            Console.WriteLine("\n"); 
         }
         return;
     }
 }
 
-
-// Пример функции
-// Вычисление интеграла от 0 до Pi/2
-//double result = NumericalIntegration.TrapezoidalRule(myFunction, 0, Math.PI / 2, 1000);
-//Console.WriteLine(result);
