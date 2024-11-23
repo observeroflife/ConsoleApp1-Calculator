@@ -16,11 +16,11 @@ namespace Calculate
             // a, b - пределы интегрирования
             // n - количество разбиений
             double h = (cleanlimright - cleanlimleft) / cleanstep;
-            double sum = 0.5 * (Math.Abs(function(cleanlimleft)) + Math.Abs(function(cleanlimright)));
+            double sum = 0.5 * (function(cleanlimleft) + function(cleanlimright));
             for (int i = 1; i < cleanstep; i++)
             {
                 double x = cleanlimleft + i * h;
-                sum += Math.Abs(function(x));
+                sum += function(x);
             }
             return h * sum;
         }
@@ -42,7 +42,7 @@ namespace Calculate
             // a, b - пределы интегрирования
             // n - количество разбиений
             double h = (cleanlimright - cleanlimleft) / cleanstep;
-            double sum = (function(cleanlimleft));
+            double sum = function(cleanlimleft);
             for (int i = 1; i < cleanstep; i++)
             {
                 double x = cleanlimleft + i * h/2;
